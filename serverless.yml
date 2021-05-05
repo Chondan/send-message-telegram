@@ -1,0 +1,25 @@
+service: send-me-a-message-native
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  stage: dev
+  region: ap-southeast-1 
+
+functions:
+  sendMessage:
+    handler: handler.sendMessage
+    events:
+      - httpApi:
+          path: /api/send-message/{message}
+          method: get
+    environment:
+      TELEGRAM_BOT_TOKEN: ${env:TELEGRAM_BOT_TOKEN}
+      CHAT_ID: ${env:CHAT_ID}
+
+plugins:
+  - serverless-offline
+
+useDotenv: true

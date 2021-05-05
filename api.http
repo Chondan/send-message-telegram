@@ -1,0 +1,16 @@
+@TELEGRAM_BOT_TOKEN=
+@CHAT_ID=
+
+POST https://api.telegram.org/bot{{TELEGRAM_BOT_TOKEN}}/sendMessage
+Content-Type: application/json
+
+{
+    "chat_id": "",
+    "text": "Hello, How are you?"
+}
+
+###
+
+@AWS_API_GATEWAY=
+@MESSAGE="Hello, How are you?"
+GET {{AWS_API_GATEWAY}}/api/telegram/{{MESSAGE}}
